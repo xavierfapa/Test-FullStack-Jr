@@ -4,5 +4,5 @@ export interface User {
   username: string;
   email: string;
   external_id: string;
-  adress: string;
+  address: string;
 }

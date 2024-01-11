@@ -4,7 +4,7 @@ import UsersList from "@/components/usersList/usersList";
 export default function Home() {
   return (
     <main className={styles.main}>
-      <h1>Hey hey</h1>
+      {/* <h1>Hey hey</h1> */}
       <UsersList />
     </main>
   );
