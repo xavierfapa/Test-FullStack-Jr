@@ -4,7 +4,7 @@ async function createUser(req, res) {
   try {
     const newUser = await User.create(req.body);
     console.log(newUser);
-    res.status(200).json(users);
+    res.status(200).json(newUser);
   } catch (error) {
     console.log(error);
     res.status(500).json({ error: "Internal server error" });
