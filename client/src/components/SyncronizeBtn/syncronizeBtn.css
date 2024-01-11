@@ -1,0 +1,19 @@
+.syncronize-container {
+  display: flex;
+  gap: 30px;
+}
+
+.sync-button {
+  padding: 10px 20px;
+  border-radius: 5px;
+  border: 1px solid black;
+  color: white;
+  background-color: #333;
+  font-size: 18px;
+  cursor: pointer;
+  &:hover {
+    background-color: grey;
+    border: 2px solid black;
+    padding: 9px 19px;
+  }
+}

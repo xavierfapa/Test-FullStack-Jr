@@ -28,7 +28,7 @@ async function getUsers(req, res) {
 async function syncUsers(req, res) {
   try {
     const response = await fetch("https://jsonplaceholder.typicode.com/users");
-    const externalUsers = response.json();
+    const externalUsers = await response.json();
 
     for (externalUser of externalUsers) {
       const existingUser = User.findOne({ external_id: externalUser.id });
@@ -41,10 +41,11 @@ async function syncUsers(req, res) {
           username: externalUser.username,
           email: externalUser.email,
           external_id: externalUser.id,
-          address: externalUser.address,
+          address: externalUser.address.street,
         });
       }
     }
+
     res.status(200).json({ message: "Synchronization successful" });
   } catch (error) {
     res.status(500).json({ error: "Internal server error" });
