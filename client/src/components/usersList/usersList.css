@@ -11,8 +11,8 @@
 .usersTable {
   margin: auto;
   & thead {
-    background-color: #333333;
     color: #ffffff;
+    background-color: #333333;
   }
   & tr {
     & > * {
