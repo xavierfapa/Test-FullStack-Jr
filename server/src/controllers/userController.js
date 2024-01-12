@@ -2,7 +2,9 @@ const User = require("../models/userModel");
 
 async function createUser(req, res) {
   try {
-    const newUser = await User.create(req.body);
+    const userData = req.body;
+
+    const newUser = await User.create(userData);
     console.log(newUser);
     res.status(200).json(newUser);
   } catch (error) {
@@ -31,7 +33,7 @@ async function syncUsers(req, res) {
     const externalUsers = await response.json();
 
     for (externalUser of externalUsers) {
-      const existingUser = User.findOne({ external_id: externalUser.id });
+      const existingUser = await User.findOne({ external_id: externalUser.id });
 
       if (existingUser) {
         await User.updateOne({ external_id: externalUser.id });
@@ -44,9 +46,11 @@ async function syncUsers(req, res) {
           address: externalUser.address.street,
         });
       }
+      const users = await User.find();
     }
 
-    res.status(200).json({ message: "Synchronization successful" });
+    // res.status(200).json({ message: "Synchronization successful" });
+    res.status(200).json(users);
   } catch (error) {
     res.status(500).json({ error: "Internal server error" });
   }

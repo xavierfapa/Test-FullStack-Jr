@@ -1,19 +1,21 @@
+import { unstable_noStore } from "next/cache";
 import "./usersList.css";
 import { User } from "@/types/user";
 
-function getUsers() {
-  return fetch("http://localhost:3000/users").then((response) =>
+async function getUsers() {
+  unstable_noStore();
+
+  return fetch("http://localhost:4000/users").then((response) =>
     response.json()
   );
 }
 
-export default async function usersList() {
+export default async function UsersList() {
   const users = await getUsers();
 
   return (
     <div className="usersListContainer">
       <h1 className="title">Users list</h1>
-      {/* <p>{JSON.stringify(users)}</p> */}
       {users.length > 0 ? (
         <table className="usersTable">
           <thead>

@@ -1,40 +1,21 @@
-"use client";
 import "./userForm.css";
-import { useState } from "react";
-import { User } from "@/types/user";
 import { postUser } from "@/services/user.api";
-import { useRouter } from "next/navigation";
+import { redirect } from "next/navigation";
 import Link from "next/link";
 
-const initialUserState: User = {
-  name: "",
-  username: "",
-  email: "",
-  address: "",
-};
+async function createUser(formData: FormData) {
+  "use server";
+  const name = formData.get("name") as string;
+  const username = formData.get("username") as string;
+  const email = formData.get("email") as string;
+  const address = formData.get("address") as string;
+
+  await postUser({ name, username, email, address });
+
+  redirect("/");
+}
 
 export default function UserForm() {
-  const [form, setForm] = useState<User>(() => initialUserState);
-  const router = useRouter();
-
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    console.log(form);
-    postUser(form).then((data) => {
-      console.log(data);
-      router.refresh();
-      router.push("/");
-    });
-  };
-
-  const handleChanges = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const { name, value } = e.target;
-    setForm((prevForm) => ({
-      ...prevForm,
-      [name]: value,
-    }));
-  };
-
   return (
     <div className="UserForm">
       <div className="form-container">
@@ -44,34 +25,16 @@ export default function UserForm() {
             <p>X</p>
           </Link>
         </div>
-        <form action="" onSubmit={handleSubmit}>
-          <input
-            type="text"
-            placeholder="Name"
-            name="name"
-            onChange={handleChanges}
-          />
-          <input
-            name="username"
-            type="text"
-            placeholder="Username"
-            onChange={handleChanges}
-          />
-          <input
-            name="email"
-            type="text"
-            placeholder="Email"
-            onChange={handleChanges}
-          />
-          <input
-            name="address"
-            type="text"
-            placeholder="Address"
-            onChange={handleChanges}
-          />
-          <button className="sync-button" type="submit">
-            Submit
-          </button>
+        <form action={createUser}>
+          <label htmlFor="name">Name</label>
+          <input required type="text" placeholder="Name" name="name" />
+          <label htmlFor="name">Username</label>
+          <input required name="username" type="text" placeholder="Username" />
+          <label htmlFor="name">Email</label>
+          <input required name="email" type="text" placeholder="Email" />
+          <label htmlFor="name">Address</label>
+          <input required name="address" type="text" placeholder="Address" />
+          <button className="button">Submit</button>
         </form>
       </div>
     </div>

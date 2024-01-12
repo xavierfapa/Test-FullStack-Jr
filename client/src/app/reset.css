@@ -30,12 +30,6 @@ figure {
   max-width: 100%;
   width: 100%;
   display: block;
-  /* opcional */
-  /* -o-object-fit: cover;
-  object-fit: cover; */
-  /* opcional */
-  /* -o-object-position: center center;
-  object-position: center center; */
 }
 
 a {
@@ -110,7 +104,6 @@ label {
   background-color: transparent;
   color: inherit;
   display: block;
-  /* opcional */
   -webkit-appearance: none;
   -moz-appearance: none;
   appearance: none;

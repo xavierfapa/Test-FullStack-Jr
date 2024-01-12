@@ -1,20 +1,5 @@
-const BASE_URL = "http://localhost:3000";
+const BASE_URL = "http://localhost:4000";
 import { User } from "@/types/user";
-
-export async function getUsers() {
-  try {
-    const response = await fetch(`${BASE_URL}/users`);
-
-    if (!response.ok) {
-      throw new Error(`HTTP error! Status: ${response.status}`);
-    }
-
-    const users = response.json();
-    return users;
-  } catch (error) {
-    console.error("Error fetching users:", error);
-  }
-}
 
 export async function postUser(user: User) {
   try {
