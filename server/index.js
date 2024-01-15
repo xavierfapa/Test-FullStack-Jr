@@ -10,6 +10,10 @@ const userRoutes = require("./src/routes/userRoutes");
 const port = process.env.PORT || 4000;
 app.use(express.json());
 app.use(cors());
+// app.use(cors({
+//   origin: ["url"],
+//   methods: ["POST", "GET"]
+// }));
 app.use(userRoutes);
 
 connectToDB()
