@@ -2,12 +2,12 @@ import { unstable_noStore } from "next/cache";
 import "./usersList.css";
 import { User } from "@/types/user";
 
+const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL;
+
 async function getUsers() {
   unstable_noStore();
 
-  return fetch("http://localhost:4000/users").then((response) =>
-    response.json()
-  );
+  return fetch(`${BASE_URL}/users`).then((response) => response.json());
 }
 
 export default async function UsersList() {

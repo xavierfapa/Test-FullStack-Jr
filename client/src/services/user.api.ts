@@ -1,4 +1,5 @@
-const BASE_URL = "http://localhost:4000";
+const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL;
+
 import { User } from "@/types/user";
 
 export async function postUser(user: User) {

@@ -27,13 +27,37 @@ export default function UserForm() {
         </div>
         <form action={createUser}>
           <label htmlFor="name">Name</label>
-          <input required type="text" placeholder="Name" name="name" />
+          <input
+            required
+            id="name"
+            type="text"
+            placeholder="Name"
+            name="name"
+          />
           <label htmlFor="name">Username</label>
-          <input required name="username" type="text" placeholder="Username" />
+          <input
+            required
+            id="username"
+            name="username"
+            type="text"
+            placeholder="Username"
+          />
           <label htmlFor="name">Email</label>
-          <input required name="email" type="text" placeholder="Email" />
+          <input
+            required
+            id="email"
+            name="email"
+            type="text"
+            placeholder="Email"
+          />
           <label htmlFor="name">Address</label>
-          <input required name="address" type="text" placeholder="Address" />
+          <input
+            required
+            id="address"
+            name="address"
+            type="text"
+            placeholder="Address"
+          />
           <button className="button">Submit</button>
         </form>
       </div>

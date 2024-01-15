@@ -46,11 +46,9 @@ async function syncUsers(req, res) {
           address: externalUser.address.street,
         });
       }
-      const users = await User.find();
     }
 
-    // res.status(200).json({ message: "Synchronization successful" });
-    res.status(200).json(users);
+    res.status(200).json({ message: "Synchronization successful" });
   } catch (error) {
     res.status(500).json({ error: "Internal server error" });
   }

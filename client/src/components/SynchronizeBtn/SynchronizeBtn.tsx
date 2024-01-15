@@ -2,11 +2,14 @@
 import Link from "next/link";
 import "./synchronizeBtn.css";
 import { syncUsers } from "@/services/user.api";
+import { useRouter } from "next/navigation";
 
 export default function SyncronizeBtn() {
+  const router = useRouter();
+
   const handleSync = async () => {
     await syncUsers();
-    window.location.reload();
+    router.refresh();
   };
 
   return (
